@@ -1,0 +1,36 @@
+# Browser tab title of the home page. Other pages show "<page title> | Pavan Aravapalli".
+title: Pavan Aravapalli | Cloud Notes
+description: Cloud architect and Apache CloudStack contributor with 14+ years of experience. Notes on cloud infrastructure.
+url: "https://pavanaravapalli.github.io"
+baseurl: ""
+lang: en
+
+github_username: pavanaravapalli
+# Used for the "Contact" menu link and the footer link: https://www.linkedin.com/in/<username>/
+linkedin_username: cloudenator
+
+nav:
+  - { title: Home, url: / }
+  - { title: About, url: /about/ }
+
+# Topics shown as filter buttons on the home page.
+# A post belongs to a topic when its `categories:` line contains the key,
+# for example `categories: [cloudstack]`. Add, rename or remove topics here.
+topics:
+  - { key: about, title: About Me }
+  - { key: cloudstack, title: CloudStack }
+  - { key: vmware, title: Vmware }
+  - { key: kvm, title: KVM }
+  - { key: troubleshooting, title: Troubleshooting }
+  - { key: infrastructure, title: Infrastructure }
+  - { key: design, title: Design }
+permalink: /blog/:year/:month/:title/
+
+plugins:
+  - jekyll-seo-tag
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

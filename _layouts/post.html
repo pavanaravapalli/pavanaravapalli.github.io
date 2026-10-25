@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<article class="wrap narrow post">
+  <header class="page-head">
+    <p class="eyebrow">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      · {{ content | number_of_words | divided_by: 200 | plus: 1 }} min read
+    </p>
+    <h1>{{ page.title }}</h1>
+  </header>
+  <div class="prose">
+    {{ content }}
+  </div>
+  <p class="back"><a href="{{ '/' | relative_url }}">&larr; All posts</a></p>
+</article>

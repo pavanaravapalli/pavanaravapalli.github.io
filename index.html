@@ -1,21 +1,96 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>RDP Bytes - Developer</title>
-</head>
-<body>
-  <h1>RDP Bytes</h1>
-  <p>Mobile App Developer</p>
+---
+layout: default
+title: Cloud architect and Apache CloudStack contributor
+description: Pavan Aravapalli is a cloud architect with 14+ years of experience and an Apache CloudStack contributor. He writes about cloud infrastructure.
+---
 
-  <h2>Apps</h2>
-  <ul>
-    <li>Queens Colours Puzzle Game</li>
-  </ul>
+<section class="hero">
+  <div class="wrap narrow">
+    <h1>Hi, I'm Pavan.</h1>
+    <p class="lead">
+      I help build the software that lets companies run their own cloud services. I work on the behind-the-scenes parts that make virtual machines and other resources easier to create, manage and keep running.
+    </p>
 
-  <h2>Contact</h2>
-  <p>Email: your-email@gmail.com</p>
+    <div class="terminal" role="img" aria-label="Terminal-style introduction: Pavan Aravapalli, cloud architect, 14 plus years in cloud, open source contributor to Eucalyptus and Apache CloudStack.">
+      <div class="t-bar" aria-hidden="true"><i></i><i></i><i></i><span class="t-title">pavan@cloud: ~</span></div>
+      <div class="t-body" aria-hidden="true">
+        <p class="t-line" style="--d:.2s"><span class="t-prompt">pavan@cloud:~$</span> whoami</p>
+        <p class="t-line t-out" style="--d:.5s">Pavan Aravapalli · cloud architect</p>
+        <p class="t-line" style="--d:.9s"><span class="t-prompt">pavan@cloud:~$</span> uptime</p>
+        <p class="t-line t-out" style="--d:1.2s">14+ years in cloud infrastructure</p>
+        <p class="t-line" style="--d:1.6s"><span class="t-prompt">pavan@cloud:~$</span> cat open-source.txt</p>
+        <p class="t-line t-out" style="--d:1.9s">Eucalyptus · Apache CloudStack</p>
+        <p class="t-line" style="--d:2.3s"><span class="t-prompt">pavan@cloud:~$</span> <span class="cursor"></span></p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <h2>Privacy Policy</h2>
-  <p><a href="#">Coming soon</a></p>
-</body>
-</html>
+<section class="section">
+  <div class="wrap narrow">
+    <p class="eyebrow">Open source</p>
+    <h2>UEFI support for guest VMs in Apache CloudStack</h2>
+    <div class="prose" style="margin-top:14px">
+      <p>The hypervisors underneath CloudStack already supported UEFI, but CloudStack didn't let users configure it. I filled that gap, so users can now boot guest VMs with UEFI, a modern boot option that today's operating systems and workloads increasingly need.</p>
+      <p><a href="{{ '/blog/2026/10/uefi-boot-for-guest-vms-in-cloudstack/' | relative_url }}">Read the write-up</a> · <a href="https://github.com/apache/cloudstack/pull/3638">Pull request #3638</a> · Released in CloudStack 4.14</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap narrow">
+    <p class="eyebrow">Blog</p>
+    <h2>Posts</h2>
+
+    {% if site.posts.size > 0 %}
+    <div class="filters" role="group" aria-label="Filter posts by topic">
+      <button type="button" class="filter-btn is-active" data-topic="all" aria-pressed="true">All</button>
+      {% for t in site.topics %}
+      <button type="button" class="filter-btn" data-topic="{{ t.key }}" aria-pressed="false">{{ t.title }}</button>
+      {% endfor %}
+    </div>
+
+    <ul class="post-grid" id="post-grid">
+      {% for post in site.posts %}
+      <li data-topics="{{ post.categories | join: ' ' }}">
+        <a class="card" href="{{ post.url | relative_url }}">
+          {% capture labels %}{% for c in post.categories %}{% for t in site.topics %}{% if t.key == c %}<span class="tag">{{ t.title }}</span>{% endif %}{% endfor %}{% endfor %}{% endcapture %}
+          {% if labels != "" %}<div class="tags">{{ labels }}</div>{% endif %}
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.excerpt | strip_html | truncatewords: 24 }}</p>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="muted" id="no-posts" hidden>No posts in this topic yet.</p>
+
+    <script>
+      (function () {
+        var buttons = document.querySelectorAll('.filter-btn');
+        var items = document.querySelectorAll('#post-grid li');
+        var empty = document.getElementById('no-posts');
+        function show(topic) {
+          var visible = 0;
+          items.forEach(function (li) {
+            var topics = (li.getAttribute('data-topics') || '').split(' ');
+            var match = topic === 'all' || topics.indexOf(topic) !== -1;
+            li.hidden = !match;
+            if (match) visible++;
+          });
+          buttons.forEach(function (b) {
+            var on = b.getAttribute('data-topic') === topic;
+            b.classList.toggle('is-active', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          empty.hidden = visible !== 0;
+        }
+        buttons.forEach(function (b) {
+          b.addEventListener('click', function () { show(b.getAttribute('data-topic')); });
+        });
+      })();
+    </script>
+    {% else %}
+    <p class="muted">No posts yet.</p>
+    {% endif %}
+  </div>
+</section>
