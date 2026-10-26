@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Licensing for distributed control planes"
-date: 2026-10-26 11:30:00 +0530
+date: 2021-08-01 11:30:00 +0530
 categories: [infrastructure,architecture,design]
 ---
 
@@ -10,6 +10,8 @@ A licensing design for multi-node control planes that works online and air-gappe
 This post describes a generic, vendor-agnostic architecture for any multi-node platform, such as a cloud management engine or a hybrid orchestration framework. It separates three concerns: evaluating entitlements, monitoring connectivity, and enforcing policy. That split lets one set of rules run on top of both an online REST sync and offline cryptographic validation.
 
 This post covers the licensing control flow and enforcement model. It leaves out pricing models, the license-issuing side and UI details. If you've handled this differently, I'd like to hear how.
+
+> **About this post.** This article presents a general approach to licensing in distributed control planes, based on challenges I’ve worked on. The examples and component names are illustrative.
 
 ## The problem
 
@@ -132,3 +134,7 @@ For dark sites, validation happens entirely on the control node.
 - **Hardware binding is a deterrent, not a lock.** MAC addresses and UUIDs change when a virtual control node is cloned or a NIC is replaced. Bind to a cluster-level identifier where you can, and provide a support path for re-binding a legitimate move.
 - **Clock-rollback detection raises the bar, nothing more.** Persisting the latest observed timestamp and rejecting an earlier wall clock stops casual tampering. An administrator with full control of the host can still defeat it, and offline expiry always depends on the local clock.
 - **Give the polling lock a lease.** If the node holding the lock crashes, its lock should expire on its own so another node can take over, instead of licensing going stale until someone intervenes.
+
+---
+
+*Written by Pavan Aravapalli, based on hands-on development experience with licensing in distributed systems. Generic overview; not a product specification. If you have a different approach, I’d like to hear about it.*

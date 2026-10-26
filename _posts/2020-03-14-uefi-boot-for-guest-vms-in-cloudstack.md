@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "UEFI boot for guest VMs in Apache CloudStack"
-date: 2026-10-25 00:30:00 +0530
+date: 2020-03-14 00:30:00 +0530
 categories: [cloudstack]
 ---
 
