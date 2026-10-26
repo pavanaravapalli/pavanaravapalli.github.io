@@ -24,6 +24,7 @@ topics:
   - { key: troubleshooting, title: Troubleshooting }
   - { key: infrastructure, title: Infrastructure }
   - { key: design, title: Design }
+  - { key: architecture, title: Architecture }
 permalink: /blog/:year/:month/:title/
 
 plugins:
