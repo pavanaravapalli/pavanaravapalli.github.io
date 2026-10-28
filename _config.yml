@@ -25,6 +25,7 @@ topics:
   - { key: infrastructure, title: Infrastructure }
   - { key: design, title: Design }
   - { key: architecture, title: Architecture }
+  - { key: opensource, title: Open Source }
 permalink: /blog/:year/:month/:title/
 
 plugins:
